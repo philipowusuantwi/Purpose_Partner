@@ -1,0 +1,8 @@
+.git
+**/node_modules
+client/dist
+*.db
+*.db-*
+.env
+docs
+server/test

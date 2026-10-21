@@ -1,0 +1,24 @@
+// Short daily devotionals on love, courtship and marriage. Scripture quotations are from the
+// King James Version (public domain). [Pastoral team to review before launch.]
+
+export const DEVOTIONALS = [
+  { title: 'Love is patient', ref: '1 Corinthians 13:4', verse: 'Charity suffereth long, and is kind; charity envieth not.', reflection: 'Patience is love\'s first description. Waiting well for God\'s timing is not wasted time; it shapes the kind of spouse you will be.', prayer: 'Lord, make me patient and kind while I wait, and in every conversation today.' },
+  { title: 'Seek first', ref: 'Matthew 6:33', verse: 'But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.', reflection: 'A relationship is a gift, not the goal. When Christ is first, every other love finds its right place.', prayer: 'Father, keep my heart set on You above every desire.' },
+  { title: 'Two are better than one', ref: 'Ecclesiastes 4:9', verse: 'Two are better than one; because they have a good reward for their labour.', reflection: 'Marriage is partnership in labour and purpose. Look for someone you can build with, not only someone you enjoy.', prayer: 'Lord, prepare me to be a faithful partner in Your work.' },
+  { title: 'Guard your heart', ref: 'Proverbs 4:23', verse: 'Keep thy heart with all diligence; for out of it are the issues of life.', reflection: 'Guarding your heart means moving at a wise pace, being honest, and inviting trusted people to speak into your courtship.', prayer: 'Holy Spirit, give me wisdom and discernment in every connection.' },
+  { title: 'Speak the truth in love', ref: 'Ephesians 4:15', verse: 'But speaking the truth in love, may grow up into him in all things.', reflection: 'Honest words spoken gently build trust. Transparency about your past and your hopes honours the other person.', prayer: 'Lord, let my words be true and gracious.' },
+  { title: 'A cord of three strands', ref: 'Ecclesiastes 4:12', verse: 'A threefold cord is not quickly broken.', reflection: 'The strongest relationships have God woven through them. Pray together early; it reveals much about a heart.', prayer: 'Jesus, be at the centre of every relationship I build.' },
+  { title: 'Be quick to listen', ref: 'James 1:19', verse: 'Let every man be swift to hear, slow to speak, slow to wrath.', reflection: 'Listening is a gift of love. Today, ask one more question before sharing your own view.', prayer: 'Lord, teach me to listen as You listen to me.' },
+  { title: 'Wait on the Lord', ref: 'Isaiah 40:31', verse: 'But they that wait upon the LORD shall renew their strength.', reflection: 'Waiting is not passive. It is trusting, preparing and growing while God works behind the scenes.', prayer: 'Father, renew my strength as I trust Your timing.' },
+  { title: 'Above all, love deeply', ref: '1 Peter 4:8', verse: 'Have fervent charity among yourselves: for charity shall cover the multitude of sins.', reflection: 'Every person carries a story. Love that covers is love that forgives and chooses grace.', prayer: 'Lord, help me love with grace and forgive freely.' },
+  { title: 'Unequally yoked', ref: '2 Corinthians 6:14', verse: 'Be ye not unequally yoked together with unbelievers.', reflection: 'Shared faith is not only a label but a direction. Look for someone walking the same way, at a similar pace.', prayer: 'Lord, lead me to someone who loves You deeply.' },
+  { title: 'Kindness and tenderness', ref: 'Ephesians 4:32', verse: 'And be ye kind one to another, tenderhearted, forgiving one another.', reflection: 'Small kindnesses repeated daily are the foundation of a lasting marriage.', prayer: 'Make me tender-hearted, Lord, in small things today.' },
+  { title: 'Plans of the heart', ref: 'Proverbs 16:9', verse: 'A man\'s heart deviseth his way: but the LORD directeth his steps.', reflection: 'Hold your plans loosely and your trust tightly. God directs the steps of those who seek Him.', prayer: 'Father, direct my steps in love and in life.' },
+  { title: 'Honour one another', ref: 'Romans 12:10', verse: 'Be kindly affectioned one to another with brotherly love; in honour preferring one another.', reflection: 'Honour shows in how you speak about someone when they are not there, and in respecting their boundaries.', prayer: 'Lord, help me honour others as You honour me.' },
+  { title: 'The God who sees', ref: 'Genesis 16:13', verse: 'Thou God seest me.', reflection: 'You are not overlooked. The God who saw Hagar in the wilderness sees you in your waiting.', prayer: 'Thank You, Lord, that You see me and know my needs.' },
+];
+
+export function devotionalFor(dateIso) {
+  const day = Math.floor(Date.parse(`${dateIso}T00:00:00Z`) / 86_400_000);
+  return { date: dateIso, ...DEVOTIONALS[((day % DEVOTIONALS.length) + DEVOTIONALS.length) % DEVOTIONALS.length] };
+}

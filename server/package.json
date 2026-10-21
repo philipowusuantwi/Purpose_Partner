@@ -1,0 +1,17 @@
+{
+  "name": "@purpose-partner/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch --no-warnings=ExperimentalWarning src/index.js",
+    "start": "node --no-warnings=ExperimentalWarning src/index.js",
+    "test": "node --no-warnings=ExperimentalWarning --test \"test/**/*.test.js\"",
+    "seed": "node --no-warnings=ExperimentalWarning scripts/seed.js",
+    "make-admin": "node --no-warnings=ExperimentalWarning scripts/make-admin.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
