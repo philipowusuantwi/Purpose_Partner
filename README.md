@@ -50,8 +50,8 @@ You need [Node.js 22.5 or newer](https://nodejs.org) and [Git](https://git-scm.c
 prompt (or any terminal):
 
 ```bash
-git clone https://github.com/philipowusuantwi/purpose-partner.git
-cd purpose-partner
+git clone https://github.com/philipowusuantwi/Purpose_Partner.git
+cd Purpose_Partner
 npm install
 npm run demo
 ```

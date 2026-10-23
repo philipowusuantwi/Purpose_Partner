@@ -9,14 +9,14 @@ click buttons and paste settings. It takes about 15 minutes.
 > who know it's a pilot.
 
 ## What you need
-- Your GitHub account, which has the `purpose-partner` repository
+- Your GitHub account, which has the `Purpose_Partner` repository
 - A Railway account: sign up at https://railway.com with "Login with GitHub"
 - A payment card. Railway charges by usage; a small pilot usually costs a few dollars a month.
   Check Railway's current pricing page.
 
 ## Step 1: Create the project
 1. In Railway, click **New Project → Deploy from GitHub repo**.
-2. Allow Railway to access your GitHub if asked (including private repositories), then choose **purpose-partner**.
+2. Allow Railway to access your GitHub if asked (including private repositories), then choose **Purpose_Partner**.
 3. Railway finds the `Dockerfile` and starts building. The first build takes a few minutes.
    It may fail until you add the settings below; that's expected.
 
