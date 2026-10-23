@@ -7,12 +7,11 @@ identity verification, church confirmation, character references, a relationship
 Covenant Integrity Score and safety systems, as described in the Purpose Partner concept note, PRD and venture
 dossier.
 
-This folder is a working **MVP** (web app plus API). It runs on its own and does not depend on MenoTribe, the
-other app in this repository.
+This repository is a working **MVP**: a web app plus its API.
 
 > **Before public launch:** the legal texts need review by Ghanaian lawyers, devotional content by your pastoral
 > team, and the manual verification steps need trained trust analysts or a verification provider. See
-> [`docs/ROADMAP.md`](docs/ROADMAP.md) and [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md).
+> [`docs/ROADMAP.md`](docs/ROADMAP.md), [`docs/COMPLIANCE.md`](docs/COMPLIANCE.md) and [`docs/DEPLOY.md`](docs/DEPLOY.md).
 
 ## What's included
 
@@ -51,13 +50,13 @@ You need [Node.js 22.5 or newer](https://nodejs.org) and [Git](https://git-scm.c
 prompt (or any terminal):
 
 ```bash
-git clone https://github.com/philipowusuantwi/MenoTribe_Initial.git
-cd MenoTribe_Initial\purpose-partner
+git clone https://github.com/philipowusuantwi/purpose-partner.git
+cd purpose-partner
 npm install
 npm run demo
 ```
 
-(On macOS or Linux, use `cd MenoTribe_Initial/purpose-partner`.) Wait until you see
+Wait until you see
 `Purpose Partner API listening`, then open **http://localhost:5173**. Stop it with `Ctrl+C`.
 
 Demo mode turns on pilot mode and loads demo data. All demo accounts use the password `purposepartner`:
@@ -73,7 +72,7 @@ You can also create your own account. In pilot mode phone codes are shown on scr
 ### Settings
 
 Settings are environment variables (see the table below). The easiest way on any system is a file named `.env`
-in the `purpose-partner` folder, for example:
+in the project folder (next to `package.json`), for example:
 
 ```
 PP_PILOT=1
@@ -96,8 +95,8 @@ npm run build
 NODE_ENV=production PP_SECRET=… PP_APP_URL=https://your.domain npm start
 ```
 
-The `Dockerfile` and `railway.json` deploy it the same way as MenoTribe (see `../docs/DEPLOY.md`): in Railway,
-set the service's root directory to `purpose-partner` and mount a volume at `/data`.
+To put it online for a pilot, follow [`docs/DEPLOY.md`](docs/DEPLOY.md) (Railway, using the included
+`Dockerfile` and `railway.json`, with a volume mounted at `/data`).
 
 ### Configuration
 
