@@ -7,6 +7,15 @@ import { createApp } from './app.js';
 import { config } from './config.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
+// Settings can live in a .env file next to package.json (works the same on Windows, macOS and Linux).
+for (const file of [path.resolve(here, '../../.env'), path.resolve(here, '../.env')]) {
+  if (fs.existsSync(file)) process.loadEnvFile(file);
+}
+// `npm run demo`: pilot mode with demo data and a demo admin account, no setup needed.
+if (process.argv.includes('--demo')) {
+  process.env.PP_PILOT ??= '1';
+  process.env.PP_SEED_DEMO ??= '1';
+}
 const db = openDatabase();
 if (process.env.PP_SEED_DEMO === '1') {
   const { seedDemo } = await import('../scripts/seed.js');

@@ -45,19 +45,45 @@ Trust Analyst, System Admin.
 
 ## Getting started
 
+### Quickest way: demo mode (Windows, macOS or Linux)
+
+You need [Node.js 22.5 or newer](https://nodejs.org) and [Git](https://git-scm.com). In the Node.js command
+prompt (or any terminal):
+
 ```bash
-cd purpose-partner
+git clone https://github.com/philipowusuantwi/MenoTribe_Initial.git
+cd MenoTribe_Initial\purpose-partner
 npm install
-npm run seed --workspace server     # optional: a partner church, an event and six demo members
-PP_PILOT=1 PP_ADMIN_EMAILS=you@example.com npm run dev
-# API on :3001, app on http://localhost:5173
+npm run demo
 ```
 
-Demo members sign in with `demo.ama@purposepartner.test`, `demo.kwame@purposepartner.test` (and Yaw, Kofi,
-Akosua, Efua), password `purposepartner`.
+(On macOS or Linux, use `cd MenoTribe_Initial/purpose-partner`.) Wait until you see
+`Purpose Partner API listening`, then open **http://localhost:5173**. Stop it with `Ctrl+C`.
 
-In development, emails and SMS are printed to the server console. With `PP_PILOT=1`, phone codes are also shown
-in the app, sign-ups are auto-verified and payments use the sandbox.
+Demo mode turns on pilot mode and loads demo data. All demo accounts use the password `purposepartner`:
+
+| Account | Use it to |
+| --- | --- |
+| `demo.ama@purposepartner.test`, `demo.akosua@…`, `demo.efua@…` | Sign in as a woman member |
+| `demo.kwame@purposepartner.test`, `demo.yaw@…`, `demo.kofi@…` | Sign in as a man member |
+| `admin@purposepartner.test` | Trust & Safety console and Admin |
+
+You can also create your own account. In pilot mode phone codes are shown on screen and payments are tests.
+
+### Settings
+
+Settings are environment variables (see the table below). The easiest way on any system is a file named `.env`
+in the `purpose-partner` folder, for example:
+
+```
+PP_PILOT=1
+PP_ADMIN_EMAILS=you@example.com
+```
+
+Then run `npm run dev`. (On macOS or Linux you can also write them before the command:
+`PP_PILOT=1 npm run dev`. That form does not work in the Windows command prompt.)
+
+Load the demo data into your own database at any time with `npm run seed --workspace server`.
 
 Make someone staff: `npm run make-admin --workspace server -- email@example.com [admin|moderator|trust_analyst]`.
 

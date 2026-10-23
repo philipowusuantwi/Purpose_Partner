@@ -139,7 +139,19 @@ export default function App() {
 
   const accountScreen = resolve(ACCOUNT, path, query, ctx);
   if (accountScreen) return shell(accountScreen, { tabs: me.user.onboarded });
-  if (!me.user.onboarded) return shell(<Onboarding meta={meta} onDone={(m) => { setMe(m); notify('Welcome to Purpose Partner'); navigate('/trust'); }} />);
+  if (!me.user.onboarded) {
+    const staff = ['moderator', 'trust_analyst', 'admin'].includes(me.user.role);
+    return shell(
+      <>
+        {staff && (
+          <p className="notice">
+            Staff account: open the <a href="#/staff">Trust &amp; Safety console</a>{me.user.role === 'admin' && <> or <a href="#/admin">Admin</a></>}, or create a profile below to use the app as a member.
+          </p>
+        )}
+        <Onboarding meta={meta} onDone={(m) => { setMe(m); notify('Welcome to Purpose Partner'); navigate('/trust'); }} />
+      </>,
+    );
+  }
 
   const screen = resolve(PRIVATE, path, query, ctx) ?? resolve(PRIVATE, '/', query, ctx);
   return shell(

@@ -1,4 +1,4 @@
-// Demo data for development and pilots: a partner church, an event and six demo members.
+// Demo data for development and pilots: a partner church, an event, six demo members and a demo admin.
 // All demo accounts use the password "purposepartner". Safe to run more than once.
 import { fileURLToPath } from 'node:url';
 import { openDatabase, transaction } from '../src/db.js';
@@ -34,6 +34,11 @@ export function seedDemo(db) {
         .run(church.id, 'Singles Fellowship & Purpose Talk', 'An afternoon of worship, teaching on godly courtship and refreshments. Open to all Purpose Partner members.', start.toISOString(), 'Grace Chapel main auditorium', 'Accra', 150);
     }
     const hash = hashPassword('purposepartner');
+    // Demo admin (no profile) for exploring the Trust & Safety console, church approvals and Admin.
+    if (!db.prepare("SELECT 1 FROM users WHERE email = 'admin@purposepartner.test'").get()) {
+      const { lastInsertRowid } = db.prepare("INSERT INTO users (email, password_hash, role, email_verified) VALUES ('admin@purposepartner.test', ?, 'admin', 1)").run(hash);
+      for (const doc of REQUIRED_DOCUMENTS) db.prepare('INSERT INTO consents (user_id, document, version) VALUES (?, ?, ?)').run(lastInsertRowid, doc, DOCUMENTS[doc].version);
+    }
     DEMO.forEach((d, i) => {
       const email = `demo.${d.first.toLowerCase()}@purposepartner.test`;
       if (db.prepare('SELECT 1 FROM users WHERE email = ?').get(email)) return;
@@ -57,7 +62,7 @@ export function seedDemo(db) {
       }
     });
   });
-  console.log('Demo data ready: Grace Chapel International, one event and six members (password "purposepartner").');
+  console.log('Demo data ready: Grace Chapel International, one event, six members and admin@purposepartner.test (password "purposepartner").');
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) seedDemo(openDatabase());
